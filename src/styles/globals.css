@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  input {
+    @apply block w-full p-2 border rounded-lg;
+  }
+  button {
+    @apply block w-full px-3 py-2 bg-primary text-white font-medium rounded-lg;
+  }
+}
