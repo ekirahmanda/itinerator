@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useRef } from "react";
+import Link from "next/link";
 
 export const Register = () => {
   const router = useRouter();
@@ -21,10 +22,9 @@ export const Register = () => {
     });
 
     // Check the response status and handle accordingly
-    if (res.status === 200) {
+    if (res.status === 201) {
       const jsonRes = await res.json();
       setMessage(jsonRes.message);
-      formRef.current.reset();
 
       router.push("/login");
     } else {
@@ -34,8 +34,11 @@ export const Register = () => {
   }
 
   return (
-    <main className="flex justify-center items-center h-screen">
-      <form action={handleRegister} className="w-[320px]" space-y-2>
+    <main className="h-screen grid grid-cols-2">
+      <form
+        action={handleRegister}
+        className="sm:shadow-xl px-8 pb-8 pt-12 sm:bg-white rounded-xl space-y-2"
+      >
         <section>
           <h1 className="text-2xl font-medium tracking-tight">
             Create an Account
@@ -48,6 +51,17 @@ export const Register = () => {
         <input name="password" placeholder="Password" type="password" />
         <button>Register</button>
       </form>
+      <div className="bg-secondary flex flex-col justify-center items-center">
+        <h1 className="text-3xl font-bold space-y-2">
+          Keep connected with us!
+        </h1>
+        <h3 className="text-l font-semibold space-y-2">
+          Already have an account?
+        </h3>
+        <Link href="/login">
+          <button>Login</button>
+        </Link>
+      </div>
       <div className="text-sm">
         {message !== "" ? <div>{message}</div> : null}
       </div>
