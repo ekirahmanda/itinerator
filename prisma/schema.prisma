@@ -15,7 +15,7 @@ model User {
   username String @unique
   email String @unique
   password String
-  profilePicture String
+  profilePicture String?
   itineraries Itinerary[]
 }
 
@@ -24,11 +24,19 @@ model Itinerary {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   destinations String
-  list String
   duration String
   type String
   intensity String
   link String
+  isPublished Boolean @default(false)
   userId String
   users User @relation(fields: [userId], references: [id])
+  generated Generate[]
+}
+
+model Generate {
+  id String @id @default(cuid())
+  result String
+  itineraryId String
+  iternary Itinerary @relation(fields: [itineraryId], references: [id])
 }
