@@ -16,6 +16,9 @@ const vacationType = [
 
 export default function Page() {
   const [destination, setDestination] = useState("");
+  const [duration, setDuration] = useState(1);
+  const [number_of_people, setNumberofPeople] = useState(1);
+  const [budget, setBudget] = useState("");
   const [totalDest, setTotalDest] = useState(1);
   const [vacType, setVacType] = useState(["culinary"]);
 
@@ -47,15 +50,40 @@ export default function Page() {
     <div className="max-w-lg m-auto my-12 space-y-5">
       <form action={handleGenerateItenary} className="flex flex-col gap-2">
         <label>Destination city ?</label>
-        <input name="city" className="input input-bordered" onChange={(e) => setDestination(e.target.value)} />
+        <input
+          name="city"
+          className="input input-bordered"
+          onChange={(e) => setDestination(e.target.value)}
+        />
+        <label>How many days ?</label>
+        <input
+          name="totalDays"
+          type="range"
+          min={1}
+          max={5}
+          defaultValue={1}
+          onChange={(e) => setDuration(e.target.value)}
+        />
         <label>How many destination in a day ?</label>
-        <input name="totalDest" type="range" min={1} max={5} defaultValue={1} onChange={(e) => setTotalDest(e.target.value)} />
+        <input
+          name="totalDest"
+          type="range"
+          min={1}
+          max={5}
+          defaultValue={1}
+          onChange={(e) => setTotalDest(e.target.value)}
+        />
         <label>Vacation type</label>
         <section className="space-y-4">
           {vacationType.map((vacation) => {
             return (
               <div key={vacation.type} className="flex gap-2 items-center">
-                <input name={vacation.type} type="checkbox" class="checkbox checkbox-primary" onChange={handleSetVacationType} />
+                <input
+                  name={vacation.type}
+                  type="checkbox"
+                  class="checkbox checkbox-primary"
+                  onChange={handleSetVacationType}
+                />
                 <label>{vacation.type}</label>
               </div>
             );
@@ -65,7 +93,8 @@ export default function Page() {
         <button className="btn btn-primary">Generate itenary</button>
       </form>
       <div>
-        You will generate itenary to {destination}, With {totalDest} destinations,
+        You will generate itenary to {destination}, With {totalDest}{" "}
+        destinations,
       </div>
       <div>
         <div>Vacation type :</div>
