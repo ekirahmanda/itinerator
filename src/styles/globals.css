@@ -2,11 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ?@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"); */
+
 @layer base {
   input {
-    @apply block w-full p-2 border rounded-lg;
+    @apply block w-full p-2 border-2 rounded-lg;
   }
   button {
-    @apply block w-full px-4 py-1.5 bg-primary text-white font-medium rounded-lg;
+    @apply block w-full px-4 py-1.5 text-white font-medium rounded-lg;
   }
 }
