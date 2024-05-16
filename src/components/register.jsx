@@ -36,8 +36,8 @@ export const Register = () => {
   }
 
   return (
-    <main className="font-nunito w-full h-screen grid grid-cols-1 lg:grid-cols-2">
-      <div className="h-full bg-white flex flex-col p-20 justify-center">
+    <main className="w-full h-screen grid grid-cols-1 lg:grid-cols-2">
+      <div className="font-poppins h-full bg-white flex flex-col p-20 justify-center">
         <div className="w-full flex flex-col">
           <div className="w-full flex flex-col mb-4">
             <h3 className="text-4xl font-semibold text-[#0378A6]">
@@ -48,16 +48,18 @@ export const Register = () => {
             action={handleRegister}
             className="w-full flex flex-col justify-center items-center rounded-xl space-y-2 mb-5 max-w-full"
           >
-            <input
-              name="firstName"
-              placeholder="First Name"
-              className="text-sm"
-            />
-            <input
-              name="lastName"
-              placeholder="Last Name"
-              className="text-sm"
-            />
+            <div className="w-full grid grid-cols-2 gap-2">
+              <input
+                name="firstName"
+                placeholder="First Name"
+                className="text-sm"
+              />
+              <input
+                name="lastName"
+                placeholder="Last Name"
+                className="text-sm"
+              />
+            </div>
             <input name="username" placeholder="Username" className="text-sm" />
             <input name="email" placeholder="Email" className="text-sm" />
             <input
@@ -93,8 +95,8 @@ export const Register = () => {
             Start your journey from preparing the itinerary well
           </p>
         </div>
-        <div class="flex w-full h-full">
-          <div class="bg-gradient-to-tr from-[#F2AEDB] to-[#0378A6] max-w-full overflow-hidden ">
+        <div className="flex w-full h-full">
+          <div className="bg-gradient-to-tr from-[#F2AEDB] to-[#0378A6] max-w-full overflow-hidden ">
             <Image
               src="/bg-people.jpg"
               width={1000}

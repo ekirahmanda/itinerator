@@ -35,15 +35,15 @@ export const Login = () => {
   }
 
   return (
-    <main className="font-nunito w-full h-screen grid grid-cols-1 lg:grid-cols-2">
+    <main className="w-full h-screen grid grid-cols-1 lg:grid-cols-2">
       <div className="relative h-full flex flex-col hidden lg:block">
         <div className="absolute top-[33%] left-[10%] flex flex-col">
           <h1 className="text-7xl text-slate-800 font-extrabold filter blur-px my-4">
             Welcome back, <br /> traveler!
           </h1>
         </div>
-        <div class="flex w-full h-full">
-          <div class="bg-gradient-to-tl from-[#F2AEDB] to-[#0378A6] max-w-full overflow-hidden ">
+        <div className="flex w-full h-full">
+          <div className="bg-gradient-to-tl from-[#F2AEDB] to-[#0378A6] max-w-full overflow-hidden ">
             <Image
               src="/bg-mountain.jpg"
               width={1000}
@@ -54,7 +54,7 @@ export const Login = () => {
           </div>
         </div>
       </div>
-      <div className="h-full bg-white flex flex-col p-20 justify-center">
+      <div className="font-poppins h-full bg-white flex flex-col p-20 justify-center">
         <div className="w-full flex flex-col">
           <div className="w-full flex flex-col mb-4">
             <h3 className="text-4xl font-semibold text-[#0378A6]">

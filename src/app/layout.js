@@ -1,7 +1,6 @@
-import { Nunito } from "next/font/google";
-import "@/styles/globals.css";
+import { nunito_sans, poppins } from "@/utils/fonts";
 
-const nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito" });
+import "@/styles/globals.css";
 
 export const metadata = {
   title: "Itinerator.ai",
@@ -11,7 +10,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={nunito.className}>{children}</body>
+      <body className={`${nunito_sans} ${poppins}`}>{children}</body>
     </html>
   );
 }
