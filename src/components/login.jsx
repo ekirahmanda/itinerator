@@ -37,7 +37,7 @@ export const Login = () => {
       <div className="bg-secondary flex flex-col justify-center items-center">
         <h1 className="text-3xl font-bold space-y-2">Welcome back, buddy!</h1>
         <h3 className="text-l font-semibold space-y-2">
-          Don't have an account yet?
+          Do not have an account yet?
         </h3>
         <Link href="/register">
           <button>Sign Up</button>
