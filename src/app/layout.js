@@ -1,7 +1,6 @@
-import { Inter } from "next/font/google";
-import "@/styles/globals.css";
+import { nunito_sans, poppins } from "@/utils/fonts";
 
-const inter = Inter({ subsets: ["latin"] });
+import "@/styles/globals.css";
 
 export const metadata = {
   title: "Itinerator.ai",
@@ -11,7 +10,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${nunito_sans} ${poppins}`}>{children}</body>
     </html>
   );
 }
