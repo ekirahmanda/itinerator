@@ -29,7 +29,7 @@ export const InputUser = () => {
 
     const data = await res.json();
     const parsedData = JSON.parse(data.choices[0].message.content);
-    // setResult(parsedData);
+    setResult(parsedData);
     console.log(parsedData);
   }
   return (
@@ -72,6 +72,11 @@ export const InputUser = () => {
         ></textarea>
         <button>Generate My Trip</button>
       </form>
+      {result ? (
+        <div>
+          <h3>{result.trip}</h3>
+        </div>
+      ) : null}
     </main>
   );
 };
