@@ -1,4 +1,4 @@
 "use client";
 export default function Footer() {
-  return <div className="font-poppins">Ini footer</div>;
+  return <div className="mx-auto font-poppins">Ini footer</div>;
 }
