@@ -15,19 +15,19 @@ model User {
   username String @unique
   email String @unique
   password String
-  profilePicture String?
+  avatar String?
   itineraries Itinerary[]
 }
 
 model Itinerary {
   id String @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  destinations String
+  city String
   duration String
-  type String
-  intensity String
-  link String
+  numberOfPeople String
+  currency String
+  budget String
+  numberOfAcitvity String
+  typeOfActivity String
   isPublished Boolean @default(false)
   userId String
   users User @relation(fields: [userId], references: [id])
@@ -36,7 +36,7 @@ model Itinerary {
 
 model Generate {
   id String @id @default(cuid())
-  result String
+  result Json
   itineraryId String
-  iternary Itinerary @relation(fields: [itineraryId], references: [id])
+  itinerary Itinerary @relation(fields: [itineraryId], references: [id])
 }

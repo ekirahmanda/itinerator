@@ -1,4 +1,5 @@
 import { nunito_sans, poppins } from "@/utils/fonts";
+import { Toaster } from "react-hot-toast";
 
 import "@/styles/globals.css";
 
@@ -10,7 +11,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${nunito_sans} ${poppins}`}>{children}</body>
+      <body className={`${nunito_sans} ${poppins}`}>
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            duration: 3000,
+            style: { background: "rgb: 51 65 85", color: "#000" },
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
