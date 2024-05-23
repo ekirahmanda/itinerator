@@ -12,7 +12,7 @@ export default function Header() {
           About Us
         </div>
         <div className="hover:text-pink-400 font-medium cursor-pointer">
-          Profile
+          Register
         </div>
       </div>
     </div>
