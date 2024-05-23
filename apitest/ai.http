@@ -1,0 +1,12 @@
+### Generate trip
+POST http://localhost:3000/api/v1/tripgenerator
+
+{
+    "city" : "Jakarta",
+    "duration" : 3,
+    "number_of_people" : 2,
+    "currency" : "MYR",
+    "budget" : "1000000",
+    "number_of_activity" : 2,
+    "type_of_activity" : "culinary"
+}
