@@ -23,9 +23,9 @@ model User {
 model Itinerary {
   id String @id @default(cuid())
   trip String
-  duration Int
-  numberOfTravelers Int
-  totalBudget Int
+  duration String
+  numberOfTravelers String
+  totalBudget String
   userId String
   user User @relation(fields: [userId], references: [id])
   activities Activity[]

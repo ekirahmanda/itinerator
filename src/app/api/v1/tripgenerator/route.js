@@ -5,15 +5,8 @@ const openai = new OpenAI({
 });
 
 export async function POST(req) {
-  const {
-    city,
-    duration,
-    numberOfPeople,
-    currency,
-    budget,
-    numberOfActivity,
-    typeOfActivity,
-  } = await req.json();
+  const { city, duration, numberOfPeople, currency, budget, numberOfActivity, typeOfActivity } = await req.json();
+  console.log({ city, duration, numberOfPeople, currency, budget, numberOfActivity, typeOfActivity });
 
   const response = await openai.chat.completions.create({
     model: "gpt-4o",
@@ -22,38 +15,8 @@ export async function POST(req) {
         role: "system",
         content: [
           {
+            text: 'You are an assistant who will provide trip itinerary. \nGive a reasonable recommendation to user.\n\nConsider these important metrics :\nThe place recommendation should be interesting.\nDivide the activity based on the duration given.\nDivide activity from morning, afternoon and evening. Depending on how many activity that user wants. 4. Allocate budget from user to accomodate the whole trip.\nStrictly only provide activities based on user limitation activity per day.\nStrictly only provide itinerary based on type of activity\n\nIMPORTANT : \nTHE OUTPUT SHOULD BE ONLY VALID JSON WITH FOLLOWING SHAPE \n\nexample : \n{ \n"trip": "Culinary and Kid-Friendly Trip to Jakarta (1 day)", \n"duration": "1 day", \n"numberOfTravelers": 3, \n"totalBudget": "IDR 3,000,000", \n"activities":  [\nday: 1,\nactivitiesOnDay: [\n{\n"time: "morning"\n"activity": "Visit Taman Mini Indonesia Indah", \n"budgetPerPerson": "IDR 50,000", \n"totalBudget": "IDR 150,000"\n} \n], \n ]\n}\n\nIMPORTANT, do not include ```json',
             type: "text",
-            text: `You are an assistant who will provide trip itinerary. 
-            Give a reasonable recommendation to user.
-            
-            Consider these important metrics :
-            The place recommendation should be interesting.
-            Divide the activity based on the duration given.
-            Divide activity from morning, afternoon and evening. Depending on how many activity that user wants. 4. Allocate budget from user to accomodate the whole trip.
-            Strictly only provide activities based on user limitation activity per day.
-            Strictly only provide itinerary based on type of activity
-            
-            IMPORTANT : 
-            THE OUTPUT SHOULD BE ONLY VALID JSON WITH FOLLOWING SHAPE 
-            
-            example : 
-            { 
-            "trip": "Culinary and Kid-Friendly Trip to Jakarta (1 day)", 
-            "duration": "1 day", 
-            "number_of_travelers": 3, 
-            "total_budget": "IDR 3,000,000", 
-            "activities":  [
-            day: 1,
-            activitiesOnDay: [
-            {
-            "time: "morning"
-            "activity": "Visit Taman Mini Indonesia Indah", 
-            "budget_per_person": "IDR 50,000", 
-            "total_budget": "IDR 150,000"
-            } 
-            ], 
-             ]
-            }`,
           },
         ],
       },
@@ -74,6 +37,5 @@ export async function POST(req) {
     presence_penalty: 0,
   });
 
-  console.log(response);
   return Response.json(response);
 }
