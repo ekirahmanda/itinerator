@@ -35,6 +35,7 @@ export async function POST(req) {
       lastName: findUser.lastName,
       username: findUser.username,
       email: findUser.email,
+      avatar: findUser.avatar,
     };
 
     // Create token
@@ -43,6 +44,9 @@ export async function POST(req) {
     });
 
     console.log(token);
+    var data = jwt.decode(token);
+
+    console.log(data);
 
     return new Response(
       JSON.stringify({ message: "Logged in successfully!", token: token }),

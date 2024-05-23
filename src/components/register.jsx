@@ -1,15 +1,13 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState, useRef } from "react";
 import Link from "next/link";
 
 import Image from "next/image";
+import { toast } from "react-hot-toast";
 
 export const Register = () => {
   const router = useRouter();
-  const [message, setMessage] = useState("");
-  const formRef = useRef();
 
   async function handleRegister(formData) {
     const firstName = formData.get("firstName");
@@ -26,12 +24,12 @@ export const Register = () => {
     // Check the response status and handle accordingly
     if (res.status === 201) {
       const jsonRes = await res.json();
-      setMessage(jsonRes.message);
+      toast.success(jsonRes.message);
 
       router.push("/login");
     } else {
       const jsonRes = await res.json();
-      setMessage(jsonRes.message);
+      toast.error(jsonRes.errorMessage);
     }
   }
 
@@ -87,7 +85,7 @@ export const Register = () => {
         </div>
       </div>
       <div className="relative h-full flex flex-col hidden lg:block">
-        <div className="absolute top-[28%] right-[10%] flex flex-col">
+        <div className="absolute top-[35%] right-[10%] flex flex-col">
           <h1 className="text-7xl text-slate-800 font-extrabold filter blur-px my-4 text-right">
             Your journey starts <br /> here!
           </h1>
@@ -98,9 +96,9 @@ export const Register = () => {
         <div className="flex w-full h-full">
           <div className="bg-gradient-to-tr from-[#F2AEDB] to-[#0378A6] max-w-full overflow-hidden ">
             <Image
-              src="/bg-people.jpg"
+              src="/bg-3.jpg"
               width={1000}
-              height={1000}
+              height={600}
               alt="background image"
               className="mix-blend-overlay relative w-full h-full object-cover"
             />

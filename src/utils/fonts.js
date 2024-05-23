@@ -11,7 +11,7 @@ export const poppins_init = Poppins({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-poppins",
-  weight: ["400", "600"],
+  weight: ["400", "500"],
 });
 
 export const nunito_sans = nunito_sans_init.variable;

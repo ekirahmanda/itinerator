@@ -1,15 +1,14 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import Cookies from "js-cookie";
 import Link from "next/link";
 
 import Image from "next/image";
+import { toast } from "react-hot-toast";
 
 export const Login = () => {
   const router = useRouter();
-  const [message, setMessage] = useState("");
 
   async function handleLogin(formData) {
     const username = formData.get("username");
@@ -22,21 +21,21 @@ export const Login = () => {
 
     if (res.status === 200) {
       const jsonRes = await res.json();
-      setMessage(jsonRes.message);
 
+      toast.success(jsonRes.message);
       localStorage.setItem("userdata", JSON.stringify(jsonRes.payload));
       Cookies.set("token", jsonRes.token);
 
       router.push("/dashboard");
     } else {
       const jsonRes = await res.json();
-      setMessage(jsonRes.message);
+      toast.error(jsonRes.errorMessage);
     }
   }
 
   return (
     <main className="w-full h-screen grid grid-cols-1 lg:grid-cols-2">
-      <div className="relative h-full flex flex-col hidden lg:block">
+      <div className="relative h-full flex flex-col lg:block">
         <div className="absolute top-[33%] left-[10%] flex flex-col">
           <h1 className="text-7xl text-slate-800 font-extrabold filter blur-px my-4">
             Welcome back, <br /> traveler!
@@ -45,7 +44,7 @@ export const Login = () => {
         <div className="flex w-full h-full">
           <div className="bg-gradient-to-tl from-[#F2AEDB] to-[#0378A6] max-w-full overflow-hidden ">
             <Image
-              src="/bg-mountain.jpg"
+              src="/bg-people.jpg"
               width={1000}
               height={1000}
               alt="background image"

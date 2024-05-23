@@ -8,7 +8,7 @@ export async function POST(req) {
     // Negative condition
     if (!firstName || !lastName || !username || !email || !password) {
       return Response.json(
-        { message: "Fields must be filled" },
+        { errorMessage: "All fields must be filled" },
         { status: 400 }
       );
     }
@@ -20,7 +20,10 @@ export async function POST(req) {
     });
 
     if (emailExist) {
-      return Response.json({ message: "Email already exist" }, { status: 400 });
+      return Response.json(
+        { errorMessage: "Email already exist" },
+        { status: 400 }
+      );
     }
 
     const usernameExist = await prisma.user.findUnique({
@@ -31,7 +34,7 @@ export async function POST(req) {
 
     if (usernameExist) {
       return Response.json(
-        { message: "Username already exist" },
+        { errorMessage: "Username already exist" },
         { status: 400 }
       );
     }
