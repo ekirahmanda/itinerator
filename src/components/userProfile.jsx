@@ -48,9 +48,13 @@ export const UserProfile = () => {
           </p>
           <div className="w-full p-4 flex justify-center">
             <Image
-              src={`https://pub-73a71c39bead456880e242180e906006.r2.dev/itinerator/${user?.id}/${user?.avatar}`}
-              width={150}
-              height={150}
+              src={
+                user !== null
+                  ? `https://pub-73a71c39bead456880e242180e906006.r2.dev/itinerator/${user?.id}/${user?.avatar}`
+                  : "/default.png"
+              }
+              width={300}
+              height={300}
               alt="avatar"
               className="min-w-full items-center border rounded-xl shadow-md"
             />

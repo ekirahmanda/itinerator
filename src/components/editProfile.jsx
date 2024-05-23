@@ -33,7 +33,6 @@ export const EditProfile = () => {
     }
   }
 
-  // sebelum return html element
   useEffect(() => {
     const token = Cookies.get("token");
     const data = jwt.decode(token);
@@ -53,9 +52,13 @@ export const EditProfile = () => {
           </p>
           <div className="w-full p-4 flex justify-center">
             <Image
-              src={`https://pub-73a71c39bead456880e242180e906006.r2.dev/itinerator/${user?.id}/${user?.avatar}`}
-              width={150}
-              height={150}
+              src={
+                user !== null
+                  ? `https://pub-73a71c39bead456880e242180e906006.r2.dev/itinerator/${user?.id}/${user?.avatar}`
+                  : "/default.png"
+              }
+              width={300}
+              height={300}
               alt="avatar"
               className="min-w-full items-center border rounded-xl shadow-md"
             />
@@ -110,6 +113,7 @@ export const EditProfile = () => {
                   name="avatar"
                   className="border-1 rounded-md px-4 py-2 border-slate-300 w-full"
                   type="file"
+                  accept=".png, .jpg, .jpeg"
                 />
               </div>
             </div>
