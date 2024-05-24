@@ -48,7 +48,7 @@ export const UserProfile = () => {
           <div className="w-full p-4 flex justify-center">
             <Image
               src={
-                user !== null
+                user?.avatar !== null
                   ? `https://pub-73a71c39bead456880e242180e906006.r2.dev/itinerator/${user?.id}/${user?.avatar}`
                   : "/default.png"
               }
