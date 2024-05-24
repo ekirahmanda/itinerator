@@ -19,12 +19,7 @@ export const Footer = () => {
         <ul className="flex flex-wrap items-center mt-3 sm:mt-0">
           <Link href="/about">
             <p className="mr-4 text-sm text-gray-500 hover:underline md:mr-6 dark:text-gray-400">
-              About
-            </p>
-          </Link>
-          <Link href="/privacypolicy">
-            <p className="mr-4 text-sm text-gray-500 hover:underline md:mr-6 dark:text-gray-400">
-              Privacy Policy
+              About Us
             </p>
           </Link>
           <Link href="https://www.devscale.id">
