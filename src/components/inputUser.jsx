@@ -37,6 +37,7 @@ export const InputUser = () => {
     setResult(parsedData);
     formRef.current.reset();
   }
+
   async function handleSaveTrip() {
     const res = await fetch("/api/v1/generated", {
       method: "POST",
@@ -159,10 +160,15 @@ export const InputUser = () => {
             })}
           </div>
           <div className="flex space-x-4 mt-12">
-            <button onClick={handleSaveTrip} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none">
+            <button
+              onClick={handleSaveTrip}
+              className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none"
+            >
               Save
             </button>
-            <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none">Share</button>
+            <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none">
+              Share
+            </button>
           </div>
         </div>
       ) : null}

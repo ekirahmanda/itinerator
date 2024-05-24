@@ -33,7 +33,7 @@ model Itinerary {
 
 model Activity {
   id String @id @default(cuid())
-  day Int
+  day String
   activitiesOnDay Json
   itineraryId String
   itinerary Itinerary @relation(fields: [itineraryId], references: [id])
