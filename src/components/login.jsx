@@ -26,7 +26,7 @@ export const Login = () => {
       localStorage.setItem("userdata", JSON.stringify(jsonRes.payload));
       Cookies.set("token", jsonRes.token);
 
-      router.push("/dashboard");
+      router.push("/create");
     } else {
       const jsonRes = await res.json();
       toast.error(jsonRes.errorMessage);

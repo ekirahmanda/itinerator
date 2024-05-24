@@ -1,5 +1,6 @@
 ### Generate trip
-POST http://localhost:3000/api/tripgenerator
+
+POST http://localhost:3000/api/v1/tripgenerator
 
 {
     "city" : "Jakarta",

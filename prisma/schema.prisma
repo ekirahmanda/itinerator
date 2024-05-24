@@ -19,24 +19,22 @@ model User {
   itineraries Itinerary[]
 }
 
+
 model Itinerary {
   id String @id @default(cuid())
-  city String
+  trip String
   duration String
-  numberOfPeople String
-  currency String
-  budget String
-  numberOfAcitvity String
-  typeOfActivity String
-  isPublished Boolean @default(false)
+  numberOfTravelers String
+  totalBudget String
   userId String
-  users User @relation(fields: [userId], references: [id])
-  generated Generate[]
+  user User @relation(fields: [userId], references: [id])
+  activities Activity[]
 }
 
-model Generate {
+model Activity {
   id String @id @default(cuid())
-  result Json
+  day String
+  activitiesOnDay Json
   itineraryId String
   itinerary Itinerary @relation(fields: [itineraryId], references: [id])
 }
