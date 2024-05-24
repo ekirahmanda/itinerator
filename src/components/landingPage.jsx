@@ -25,7 +25,7 @@ const LandingPage = () => {
         <div
           className="absolute top-0 w-full h-full bg-center bg-cover"
           style={{
-            backgroundImage: "url('https://source.unsplash.com/uE2T1tCFsn8')",
+            backgroundImage: "url(/bg-2.jpg)",
           }}
         >
           <span
