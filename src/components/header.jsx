@@ -33,7 +33,7 @@ export const Header = () => {
   }
 
   return (
-    <header className="font-poppins shadow-md flex justify-between p-2 antialiased bg-white-200">
+    <header className="sticky z-50 top-0 font-poppins shadow-md flex justify-between p-2 antialiased bg-[#0378A6]">
       <div className="flex justify-between items-center h-full w-full px-4 md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
         <Link href="/">
           <Image
@@ -41,7 +41,7 @@ export const Header = () => {
             alt="logo"
             width={105}
             height={50}
-            className="cusor-pointer"
+            className="cursor-pointer"
             priority
           />
         </Link>
@@ -49,12 +49,12 @@ export const Header = () => {
           {!loggedIn ? (
             <div className="flex gap-2">
               <Link href="/register">
-                <button className="btn btn-accent rounded-xl p-4">
+                <button className="btn  text-slate-800 rounded-xl bg-white p-4">
                   Register
                 </button>
               </Link>
               <Link href="/login">
-                <button className="btn btn-outline btn-secondary rounded-xl p-4">
+                <button className="btn btn-outline btn-secondary bg-white rounded-xl p-4">
                   Login
                 </button>
               </Link>
@@ -62,7 +62,7 @@ export const Header = () => {
           ) : (
             <>
               <Link href="/create">
-                <button className="btn btn-outline btn-info text-sm rounded-xl">
+                <button className="btn btn-outline btn-info text-sm bg-white rounded-xl">
                   Create Itinerary
                 </button>
               </Link>
@@ -74,7 +74,11 @@ export const Header = () => {
                 >
                   <div className="min-w-full items-center border rounded-xl shadow-md">
                     <Image
-                      src={`https://pub-73a71c39bead456880e242180e906006.r2.dev/itinerator/${user?.id}/${user?.avatar}`}
+                      src={
+                        user?.avatar !== null
+                          ? `https://pub-73a71c39bead456880e242180e906006.r2.dev/itinerator/${user?.id}/${user?.avatar}`
+                          : "/default.png"
+                      }
                       width={50}
                       height={50}
                       alt="avatar"
