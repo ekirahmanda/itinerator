@@ -1,5 +1,7 @@
 async function getData(id) {
-  const res = await fetch(`http://localhost:3000/api/v1/generated/${id}`);
+  const res = await fetch(
+    `https://itinerator-gamma.vercel.app/api/v1/generated/${id}`
+  );
   const data = await res.json();
   return data;
 }
