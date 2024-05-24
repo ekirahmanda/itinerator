@@ -26,6 +26,7 @@ export async function POST(req) {
           {
             type: "text",
             text: `I want to go to ${city} for ${duration} days. There are ${numberOfPeople} people in this trip, my budget is ${currency} ${budget}. I want to have ${numberOfActivity} activities per day.  This trip main focus is ${typeOfActivity}. `,
+
           },
         ],
       },

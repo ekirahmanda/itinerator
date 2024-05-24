@@ -79,7 +79,7 @@ export const Login = () => {
           </div>
 
           <div className="w-full flex items-center justify-between">
-            <p className="text-sm font-normal">Do not have an account?</p>
+            <p className="text-sm font-normal">Do not have an account yet?</p>
             <Link
               href="/register"
               className="text-sm font-medium underline underline-offset-2 cursor-pointer hover:text-primary "

@@ -31,7 +31,6 @@ export const UserProfile = () => {
     }
   }
 
-  // sebelum return html element
   useEffect(() => {
     const token = Cookies.get("token");
     const data = jwt.decode(token);
@@ -39,7 +38,7 @@ export const UserProfile = () => {
   }, []);
 
   return (
-    <main className="flex justify-center items-center h-screen">
+    <main className="flex justify-center items-center">
       <main className="font-poppins w-1/2 rounded-2xl shadow-md p-10 border grid grid-cols-1 gap-2 lg:grid-cols-2">
         <div className="w-full p-4 rounded-2xl sm:p-6 lg:p-8 bg-white shadow-sm">
           <h2 className="text-3xl font-semibold block">My Profile</h2>
@@ -49,7 +48,7 @@ export const UserProfile = () => {
           <div className="w-full p-4 flex justify-center">
             <Image
               src={
-                user !== null
+                user?.avatar !== null
                   ? `https://pub-73a71c39bead456880e242180e906006.r2.dev/itinerator/${user?.id}/${user?.avatar}`
                   : "/default.png"
               }
