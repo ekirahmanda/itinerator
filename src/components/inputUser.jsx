@@ -4,6 +4,8 @@ import { useState, useRef } from "react";
 // import Cookies from "js-cookie";
 import Link from "next/link";
 import Select from "react-select";
+import { CountrySelect, StateSelect } from "react-country-state-city";
+import "react-country-state-city/dist/react-country-state-city.css";
 
 export const InputUser = () => {
   const [result, setResult] = useState(null);
@@ -13,11 +15,14 @@ export const InputUser = () => {
   const currencyOptions = [
     { value: "USD", label: "US Dollar (USD)" },
     { value: "EUR", label: "Euro (EUR)" },
-    { value: "IDR", label: "Indonesian Rupiah (IDR)" },
+    { value: "IDR", label: "ID Rupiah (IDR)" },
   ];
+  const [countryid, setCountryid] = useState(0);
+  const [stateid, setstateid] = useState(0);
+  const [selectedCity, setSelectedCity] = useState("");
 
   async function handleGenerateTrip(formData) {
-    const city = formData.get("city");
+    const city = selectedCity;
     const duration = formData.get("duration");
     const numberOfPeople = formData.get("numberOfPeople");
     const currency = formData.get("currency");
@@ -43,6 +48,8 @@ export const InputUser = () => {
     const parsedData = JSON.parse(data.choices[0].message.content);
     setResult(parsedData);
     formRef.current.reset();
+    setCountryid(0);
+    setstateid(0);
   }
 
   async function handleSaveTrip() {
@@ -71,10 +78,21 @@ export const InputUser = () => {
       </Link>
       <form ref={formRef} action={handleGenerateTrip} className="space-y-2">
         <div className="grid grid-cols-3 gap-4">
+          <CountrySelect
+            countryid={countryid}
+            onChange={(e) => {
+              setCountryid(e.id);
+            }}
+            placeHolder="Select Country"
+          />
           <div>
-            <input
-              type="text"
+            <StateSelect
               name="city"
+              countryid={countryid}
+              onChange={(e) => {
+                setSelectedCity(e.name); // Update the selected city
+                setstateid(e.id);
+              }}
               placeholder="City"
               className="block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
             />
