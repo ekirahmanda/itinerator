@@ -1,6 +1,30 @@
+import prisma from "@/utils/prisma";
+import { jwtVerify } from "jose";
+import { cookies } from "next/headers";
+import Link from "next/link";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+
+async function getAllItineraryByUserId() {
+  const { payload } = await jwtVerify(
+    cookies().get("token").value,
+    new TextEncoder().encode(process.env.JWT_SECRET)
+  );
+
+  const itineraries = await prisma.itinerary.findMany({
+    where: {
+      userId: payload.id,
+    },
+    include: {
+      activities: true, // Include activities related to each itinerary
+    },
+  });
+
+  return itineraries;
+}
+
 export default async function Page() {
   const itineraries = await getAllItineraryByUserId();
-  console.log(itineraries);
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
@@ -12,7 +36,7 @@ export default async function Page() {
             <button className="mt-4 btn btn-primary">Create Itinerary</button>
           </Link>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {itineraries.map((itinerary) => (
             <div key={itinerary.id} className="card bg-base-100 shadow-xl">
               <div className="card-body flex flex-col justify-between">

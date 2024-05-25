@@ -13,13 +13,6 @@ export const InputUser = () => {
   const [toastMessage, setToastMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
 
-  // Currency options
-  const currencyOptions = [
-    { value: "USD", label: "US Dollar (USD)" },
-    { value: "EUR", label: "Euro (EUR)" },
-    { value: "IDR", label: "ID Rupiah (IDR)" },
-  ];
-
   async function handleGenerateTrip(event) {
     event.preventDefault(); // Prevent default form submission
     setLoading(true);
@@ -103,7 +96,7 @@ export const InputUser = () => {
   };
 
   return (
-    <main className="max-w-md mx-auto my-12 space-y-7">
+    <main className="max-w-md mx-auto my-12 space-y-7 p-4">
       <h1 className="text-3xl font-bold text-center mb-8">
         Plan Your Next Adventure!
       </h1>
