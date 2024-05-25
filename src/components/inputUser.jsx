@@ -4,7 +4,11 @@ import { useState, useRef } from "react";
 // import Cookies from "js-cookie";
 // import Link from "next/link";
 import Select from "react-select";
-import { CountrySelect, StateSelect } from "react-country-state-city";
+import {
+  CountrySelect,
+  StateSelect,
+  CitySelect,
+} from "react-country-state-city";
 import "react-country-state-city/dist/react-country-state-city.css";
 
 export const InputUser = () => {
@@ -25,6 +29,7 @@ export const InputUser = () => {
   const [validationMessage, setValidationMessage] = useState("");
   const [toastMessage, setToastMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
+  const [cityid, setCityid] = useState(0);
 
   async function handleGenerateTrip(event) {
     event.preventDefault(); // Prevent default form submission
@@ -32,7 +37,7 @@ export const InputUser = () => {
     setValidationMessage("");
     const formData = new FormData(formRef.current);
     let city = selectedCity;
-    if (!city && !stateid) {
+    if (!city && !stateid && !cityid) {
       city = selectedCountry;
     }
     const duration = formData.get("duration");
@@ -155,6 +160,16 @@ export const InputUser = () => {
             }}
             placeHolder="Select State"
             className="block w-full p-3 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
+          />
+          <CitySelect
+            countryid={countryid}
+            stateid={stateid}
+            onChange={(e) => {
+              const cityName = e.name || selectedCountry;
+              setSelectedCity(cityName);
+              console.log(e.id);
+            }}
+            placeHolder="Select City"
           />
           <input
             type="number"
