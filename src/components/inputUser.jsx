@@ -153,55 +153,62 @@ export const InputUser = () => {
               setSelectedCity(cityName);
               setstateid(e.id);
             }}
-            placeholder="Select City"
-            className="block w-full p-3 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
-          />
-          <input
-            type="text"
-            name="duration"
-            placeholder="Duration (e.g., 3 days)"
+            placeHolder="Select State"
             className="block w-full p-3 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
           />
           <input
             type="number"
-            name="numberOfPeople"
-            placeholder="Number of People"
             min="1"
+            max="10"
+            name="duration"
+            placeholder="Duration (e.g., 3 days)"
             className="block w-full p-3 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
           />
+
+          <input
+            type="number"
+            min="1"
+            max="10"
+            name="numberOfPeople"
+            placeholder="Number of People"
+            className="block w-full p-3 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
+          />
+
           <Select
             name="currency"
             placeholder="Select Currency"
             options={currencyOptions}
             className="block w-full p-3 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
           />
+
           <input
             type="number"
             name="budget"
-            placeholder="Budget"
-            min="1"
+            placeholder="Budget (e.g., 1000)"
+            min="100"
             className="block w-full p-3 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
           />
+
           <input
             type="number"
             name="numberOfActivity"
             placeholder="Number of Activities"
             min="1"
+            max="5"
             className="block w-full p-3 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
           />
-          <select
+
+          <Select
             name="typeOfActivity"
-            defaultValue=""
-            className="select select-primary w-full p-3 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
-          >
-            <option value="" disabled>
-              What is your activity type plan?
-            </option>
-            <option value="Culinary">Culinary</option>
-            <option value="History and Culture">History and Culture</option>
-            <option value="Staycation">Staycation</option>
-            <option value="Outdoor Activity">Outdoor Activity</option>
-          </select>
+            placeholder="Select Activity"
+            options={[
+              { value: "Culinary", label: "Culinary" },
+              { value: "History and Culture", label: "History and Culture" },
+              { value: "Staycation", label: "Staycation" },
+              { value: "Outdoor Activity", label: "Outdoor Activity" },
+            ]}
+            className="block w-full p-3 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
+          />
         </div>
         <button className="w-full bg-blue-500 text-white font-semibold py-3 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
           Generate My Trip
@@ -213,9 +220,11 @@ export const InputUser = () => {
         </div>
       )}
       {result && (
-        <div className="card w-full bg-base-100 shadow-xl">
-          <div className="card-body">
-            <h3 className="text-xl font-bold">{result.trip}</h3>
+        <div className="card w-full bg-white shadow-lg rounded-lg overflow-hidden">
+          <div className="card-body bg-gray-100 p-6">
+            <div className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-md p-4 flex justify-center items-center mb-6">
+              <h3 className="text-xl font-bold text-center">{result.trip}</h3>
+            </div>
             <div>
               {result.activities.map((activity, index) => (
                 <div key={index} className="mb-6">
