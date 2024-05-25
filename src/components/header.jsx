@@ -33,7 +33,7 @@ export const Header = () => {
   }
 
   return (
-    <header className="sticky z-50 top-0 font-poppins shadow-md flex justify-between p-2 antialiased bg-[#0378A6]">
+    <header className="sticky z-50 top-0 font-poppins shadow-md flex justify-between p-2 antialiased bg-gradient-to-tl from-[#F2AEDB] to-[#04B2D9] opacity-90">
       <div className="flex justify-between items-center h-full w-full px-4 md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
         <Link href="/">
           <Image

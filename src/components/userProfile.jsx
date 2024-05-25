@@ -39,7 +39,7 @@ export const UserProfile = () => {
 
   return (
     <main className="flex justify-center items-center">
-      <main className="font-poppins w-1/2 rounded-2xl shadow-md p-10 border grid grid-cols-1 gap-2 lg:grid-cols-2">
+      <main className="font-poppins shadow-none border rounded-2xl p-10 grid grid-cols-1 gap-2 lg:grid-cols-2 md:w-1/2 md:shadow-xl">
         <div className="w-full p-4 rounded-2xl sm:p-6 lg:p-8 bg-white shadow-sm">
           <h2 className="text-3xl font-semibold block">My Profile</h2>
           <p className="text-md text-gray-600 mb-2">
