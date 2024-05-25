@@ -3,12 +3,18 @@
 import { useState, useRef } from "react";
 // import Cookies from "js-cookie";
 import Link from "next/link";
+import Select from "react-select";
 
 export const InputUser = () => {
   const [result, setResult] = useState(null);
   const formRef = useRef(null);
   let dayCounter = 1;
   console.log(result);
+  const currencyOptions = [
+    { value: "USD", label: "US Dollar (USD)" },
+    { value: "EUR", label: "Euro (EUR)" },
+    { value: "IDR", label: "Indonesian Rupiah (IDR)" },
+  ];
 
   async function handleGenerateTrip(formData) {
     const city = formData.get("city");
@@ -91,10 +97,10 @@ export const InputUser = () => {
             />
           </div>
           <div>
-            <input
-              type="text"
+            <Select
               name="currency"
-              placeholder="Currency"
+              placeholder="Select Currency"
+              options={currencyOptions} // Define currency options
               className="block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
             />
           </div>
