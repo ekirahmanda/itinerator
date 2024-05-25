@@ -25,7 +25,6 @@ async function getAllItineraryByUserId() {
 
 export default async function Page() {
   const itineraries = await getAllItineraryByUserId();
-  console.log(itineraries);
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
@@ -37,7 +36,7 @@ export default async function Page() {
             <button className="mt-4 btn btn-primary">Create Itinerary</button>
           </Link>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {itineraries.map((itinerary) => (
             <div key={itinerary.id} className="card bg-base-100 shadow-xl">
               <div className="card-body flex flex-col justify-between">
