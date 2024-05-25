@@ -23,6 +23,8 @@ export const InputUser = () => {
   const [selectedCity, setSelectedCity] = useState("");
   const [loading, setLoading] = useState(false);
   const [validationMessage, setValidationMessage] = useState("");
+  const [toastMessage, setToastMessage] = useState("");
+  const [showToast, setShowToast] = useState(false);
 
   async function handleGenerateTrip(event) {
     event.preventDefault(); // Prevent default form submission
@@ -91,6 +93,16 @@ export const InputUser = () => {
         "Content-Type": "application/json",
       },
     });
+
+    if (res.ok) {
+      setToastMessage("Trip saved successfully!"); // Set toast message
+      setShowToast(true); // Show toast
+      setTimeout(() => setShowToast(false), 3000); // Hide toast after 3 seconds
+    } else {
+      setToastMessage("Failed to save trip.");
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000);
+    }
   }
   const handleNewTrip = () => {
     setResult(null); // Clear previous trip results
@@ -235,6 +247,13 @@ export const InputUser = () => {
                 Generate New Trip
               </button>
             </div>
+          </div>
+        </div>
+      )}
+      {showToast && (
+        <div className="toast toast-bottom toast-center">
+          <div className="alert alert-success">
+            <span>{toastMessage}</span>
           </div>
         </div>
       )}
