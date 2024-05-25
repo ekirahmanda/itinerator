@@ -35,7 +35,7 @@ export const Login = () => {
 
   return (
     <main className="w-full h-screen grid grid-cols-1 lg:grid-cols-2">
-      <div className="relative h-full flex flex-col lg:block">
+      <div className="relative h-full flex-col hidden lg:block">
         <div className="absolute top-[33%] left-[10%] flex flex-col">
           <h1 className="text-7xl text-slate-800 font-extrabold filter blur-px my-4">
             Welcome back, <br /> traveler!
