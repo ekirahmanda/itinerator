@@ -33,7 +33,9 @@ export default async function Page() {
         <div className="mb-6 text-center">
           <h1 className="text-2xl font-bold">All My Itineraries</h1>
           <Link href="/create">
-            <button className="mt-4 btn btn-primary">Create Itinerary</button>
+            <button className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-md p-4 flex justify-center">
+              Create Itinerary
+            </button>
           </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -41,7 +43,9 @@ export default async function Page() {
             <div key={itinerary.id} className="card bg-base-100 shadow-xl">
               <div className="card-body flex flex-col justify-between">
                 <div>
-                  <h2 className="card-title">Trip: {itinerary.trip}</h2>
+                  <h2 className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-md p-4 flex justify-center card-title">
+                    Trip: {itinerary.trip}
+                  </h2>
                   {itinerary.activities &&
                     itinerary.activities.map((activity, index) => (
                       <div key={index} className="mb-4">
@@ -61,7 +65,9 @@ export default async function Page() {
                 </div>
                 <div className="card-actions justify-end">
                   <Link href={`/public/${itinerary.id}`}>
-                    <button className="btn btn-secondary">Share</button>
+                    <button className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-md p-4 flex justify-center">
+                      Share
+                    </button>
                   </Link>
                 </div>
               </div>

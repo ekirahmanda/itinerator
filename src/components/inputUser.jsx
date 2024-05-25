@@ -82,6 +82,8 @@ export const InputUser = () => {
     formRef.current.reset();
     setCountryid(0);
     setstateid(0);
+    setSelectedCountry(""); // Reset selected country
+    setSelectedCity(""); // Reset selected city
   }
 
   async function handleSaveTrip() {
@@ -114,9 +116,9 @@ export const InputUser = () => {
     formRef.current.reset(); // Reset form fields
     setCountryid(0); // Reset country select
     setstateid(0); // Reset state select
+    setSelectedCountry(""); // Reset selected country
     setSelectedCity(""); // Reset selected city
   };
-
   return (
     <main className="max-w-md m-auto my-12 space-y-7">
       <h1 className="text-3xl font-bold text-center mb-8">
