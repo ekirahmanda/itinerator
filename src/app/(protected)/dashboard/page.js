@@ -32,27 +32,27 @@ export default async function Page() {
       <main className="flex-grow container mx-auto p-6">
         <div className="mb-6 text-center">
           <h1 className="text-2xl font-bold">All My Itineraries</h1>
-          <Link href="/create">
-            <button className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-md p-4 flex justify-center">
-              Create Itinerary
-            </button>
-          </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {itineraries.map((itinerary) => (
             <div key={itinerary.id} className="card bg-base-100 shadow-xl">
               <div className="card-body flex flex-col justify-between">
                 <div>
-                  <h2 className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-md p-4 flex justify-center card-title">
+                  <h2 className="bg-base-300 rounded-xl text-2xl md:text-3xl font-medium mt-3 text-center p-2">
                     Trip: {itinerary.trip}
                   </h2>
                   {itinerary.activities &&
                     itinerary.activities.map((activity, index) => (
                       <div key={index} className="mb-4">
-                        <h3 className="text-lg font-bold">Day {index + 1}</h3>
+                        <h3 className="text-lg font-bold p-2">
+                          Day {index + 1}
+                        </h3>
                         <div className="space-y-2">
                           {activity.activitiesOnDay.map((item, i) => (
-                            <div key={i} className="border rounded p-2">
+                            <div
+                              key={i}
+                              className="bg-white border rounded p-2"
+                            >
                               <p className="font-semibold">Time: {item.time}</p>
                               <p>Activity: {item.activity}</p>
                               <p>Budget Per Person: {item.budgetPerPerson}</p>
