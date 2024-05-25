@@ -1,28 +1,3 @@
-import prisma from "@/utils/prisma";
-import { jwtVerify } from "jose";
-import { cookies } from "next/headers";
-import Link from "next/link";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
-
-async function getAllItineraryByUserId() {
-  const { payload } = await jwtVerify(
-    cookies().get("token").value,
-    new TextEncoder().encode(process.env.JWT_SECRET)
-  );
-
-  const itineraries = await prisma.itinerary.findMany({
-    where: {
-      userId: payload.id,
-    },
-    include: {
-      activities: true, // Include activities related to each itinerary
-    },
-  });
-
-  return itineraries;
-}
-
 export default async function Page() {
   const itineraries = await getAllItineraryByUserId();
   console.log(itineraries);

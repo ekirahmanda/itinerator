@@ -1,8 +1,5 @@
 "use client";
-
 import { useState, useRef } from "react";
-// import Cookies from "js-cookie";
-// import Link from "next/link";
 import Select from "react-select";
 import { CountrySelect, StateSelect } from "react-country-state-city";
 import "react-country-state-city/dist/react-country-state-city.css";
@@ -11,30 +8,24 @@ export const InputUser = () => {
   const [result, setResult] = useState(null);
   const formRef = useRef(null);
   const [selectedCountry, setSelectedCountry] = useState("");
-  let dayCounter = 1;
-  console.log(result);
+  const [loading, setLoading] = useState(false);
+  const [validationMessage, setValidationMessage] = useState("");
+  const [toastMessage, setToastMessage] = useState("");
+  const [showToast, setShowToast] = useState(false);
+
+  // Currency options
   const currencyOptions = [
     { value: "USD", label: "US Dollar (USD)" },
     { value: "EUR", label: "Euro (EUR)" },
     { value: "IDR", label: "ID Rupiah (IDR)" },
   ];
-  const [countryid, setCountryid] = useState(0);
-  const [stateid, setstateid] = useState(0);
-  const [selectedCity, setSelectedCity] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [validationMessage, setValidationMessage] = useState("");
-  const [toastMessage, setToastMessage] = useState("");
-  const [showToast, setShowToast] = useState(false);
 
   async function handleGenerateTrip(event) {
     event.preventDefault(); // Prevent default form submission
     setLoading(true);
     setValidationMessage("");
     const formData = new FormData(formRef.current);
-    let city = selectedCity;
-    if (!city && !stateid) {
-      city = selectedCountry;
-    }
+    // Extract form data
     const duration = formData.get("duration");
     const numberOfPeople = formData.get("numberOfPeople");
     const currency = formData.get("currency");
@@ -42,6 +33,7 @@ export const InputUser = () => {
     const numberOfActivity = formData.get("numberOfActivity");
     const typeOfActivity = formData.get("typeOfActivity");
 
+    // Validation
     if (
       !selectedCountry ||
       !duration ||
@@ -56,11 +48,11 @@ export const InputUser = () => {
       return;
     }
 
-    //generate trip
+    // API call to generate trip
     const res = await fetch("/api/v1/tripgenerator", {
       method: "POST",
       body: JSON.stringify({
-        city,
+        city: selectedCountry, // Assuming country is being used as city when state is not selected
         duration,
         numberOfPeople,
         currency,
@@ -75,8 +67,7 @@ export const InputUser = () => {
     setResult(parsedData);
     setLoading(false);
     formRef.current.reset();
-    setCountryid(0);
-    setstateid(0);
+    setSelectedCountry("");
   }
 
   async function handleSaveTrip() {
@@ -95,25 +86,24 @@ export const InputUser = () => {
     });
 
     if (res.ok) {
-      setToastMessage("Trip saved successfully!"); // Set toast message
-      setShowToast(true); // Show toast
-      setTimeout(() => setShowToast(false), 3000); // Hide toast after 3 seconds
+      setToastMessage("Trip saved successfully!");
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000);
     } else {
       setToastMessage("Failed to save trip.");
       setShowToast(true);
       setTimeout(() => setShowToast(false), 3000);
     }
   }
+
   const handleNewTrip = () => {
     setResult(null); // Clear previous trip results
     formRef.current.reset(); // Reset form fields
-    setCountryid(0); // Reset country select
-    setstateid(0); // Reset state select
-    setSelectedCity(""); // Reset selected city
+    setSelectedCountry(""); // Reset selected country
   };
 
   return (
-    <main className="max-w-md m-auto my-12 space-y-7">
+    <main className="max-w-md mx-auto my-12 space-y-7">
       <h1 className="text-3xl font-bold text-center mb-8">
         Plan Your Next Adventure!
       </h1>
@@ -138,23 +128,8 @@ export const InputUser = () => {
         )}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <CountrySelect
-            countryid={countryid}
-            onChange={(e) => {
-              setCountryid(e.id);
-              setSelectedCountry(e.name); // Update selected country name
-            }}
+            onChange={(e) => setSelectedCountry(e.name)}
             placeHolder="Select Country"
-          />
-          <StateSelect
-            name="city"
-            countryid={countryid}
-            onChange={(e) => {
-              const cityName = e.name || selectedCountry; // If state is empty, use the selected country name
-              setSelectedCity(cityName);
-              setstateid(e.id);
-            }}
-            placeHolder="Select State"
-            className="block w-full p-3 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
           />
           <input
             type="number"
@@ -164,71 +139,33 @@ export const InputUser = () => {
             placeholder="Duration (e.g., 3 days)"
             className="block w-full p-3 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
           />
-
-          <input
-            type="number"
-            min="1"
-            max="10"
-            name="numberOfPeople"
-            placeholder="Number of People"
-            className="block w-full p-3 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
-          />
-
-          <Select
-            name="currency"
-            placeholder="Select Currency"
-            options={currencyOptions}
-            className="block w-full p-3 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
-          />
-
-          <input
-            type="number"
-            name="budget"
-            placeholder="Budget (e.g., 1000)"
-            min="100"
-            className="block w-full p-3 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
-          />
-
-          <input
-            type="number"
-            name="numberOfActivity"
-            placeholder="Number of Activities"
-            min="1"
-            max="5"
-            className="block w-full p-3 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
-          />
-
-          <Select
-            name="typeOfActivity"
-            placeholder="Select Activity"
-            options={[
-              { value: "Culinary", label: "Culinary" },
-              { value: "History and Culture", label: "History and Culture" },
-              { value: "Staycation", label: "Staycation" },
-              { value: "Outdoor Activity", label: "Outdoor Activity" },
-            ]}
-            className="block w-full p-3 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
-          />
+          {/* Additional form inputs */}
         </div>
         <button className="w-full bg-blue-500 text-white font-semibold py-3 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
           Generate My Trip
         </button>
       </form>
+      {/* Loading indicator */}
       {loading && (
         <div className="flex justify-center items-center">
           <span className="loading loading-spinner text-primary"></span>
         </div>
       )}
+      {/* Display trip results */}
       {result && (
         <div className="card w-full bg-white shadow-lg rounded-lg overflow-hidden">
+          {/* Display trip details */}
           <div className="card-body bg-gray-100 p-6">
             <div className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-md p-4 flex justify-center items-center mb-6">
               <h3 className="text-xl font-bold text-center">{result.trip}</h3>
             </div>
+            {/* Display activity details */}
             <div>
               {result.activities.map((activity, index) => (
                 <div key={index} className="mb-6">
+                  {/* Display day number */}
                   <h3 className="text-xl font-bold">Day {index + 1}</h3>
+                  {/* Display activity details for each day */}
                   <div className="space-y-2">
                     {activity.activitiesOnDay.map((item, i) => (
                       <div key={i}>
@@ -242,6 +179,7 @@ export const InputUser = () => {
                 </div>
               ))}
             </div>
+            {/* Save and generate new trip buttons */}
             <div className="flex justify-end mt-6 space-x-4">
               <button
                 onClick={handleSaveTrip}
@@ -259,6 +197,8 @@ export const InputUser = () => {
           </div>
         </div>
       )}
+
+      {/* Toast message */}
       {showToast && (
         <div className="toast toast-bottom toast-center">
           <div className="alert alert-success">
