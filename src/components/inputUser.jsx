@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 // import Cookies from "js-cookie";
+import Link from "next/link";
 
 export const InputUser = () => {
   const [result, setResult] = useState(null);
@@ -57,9 +58,11 @@ export const InputUser = () => {
   return (
     <main className="max-w-md m-auto my-12 space-y-7">
       <h1>Let&lsquo;s pack your bag!</h1>
-      <button className="w-full p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:ring focus:ring-blue-300 focus:outline-none">
-        My Saved Generated Trip Lists
-      </button>
+      <Link href="/dashboard">
+        <button className="w-full p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:ring focus:ring-blue-300 focus:outline-none">
+          My Saved Generated Trip Lists
+        </button>
+      </Link>
       <form ref={formRef} action={handleGenerateTrip} className="space-y-2">
         <div className="grid grid-cols-3 gap-4">
           <div>
