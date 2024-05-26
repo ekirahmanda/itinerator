@@ -79,11 +79,11 @@ export const InputUser = () => {
     const parsedData = JSON.parse(data.choices[0].message.content);
     setResult(parsedData);
     setLoading(false);
-    formRef.current.reset();
-    setCountryid(0);
-    setstateid(0);
-    setSelectedCountry(""); // Reset selected country
-    setSelectedCity(""); // Reset selected city
+    // formRef.current.reset();
+    // setCountryid(0);
+    // setstateid(0);
+    // setSelectedCountry(""); // Reset selected country
+    // setSelectedCity(""); // Reset selected city
   }
 
   async function handleSaveTrip() {
@@ -111,14 +111,14 @@ export const InputUser = () => {
       setTimeout(() => setShowToast(false), 3000);
     }
   }
-  const handleNewTrip = () => {
-    setResult(null); // Clear previous trip results
-    formRef.current.reset(); // Reset form fields
-    setCountryid(0); // Reset country select
-    setstateid(0); // Reset state select
-    setSelectedCountry(""); // Reset selected country
-    setSelectedCity(""); // Reset selected city
-  };
+  // const handleNewTrip = () => {
+  //   setResult(null); // Clear previous trip results
+  //   formRef.current.reset(); // Reset form fields
+  //   setCountryid(0); // Reset country select
+  //   setstateid(0); // Reset state select
+  //   setSelectedCountry(""); // Reset selected country
+  //   setSelectedCity(""); // Reset selected city
+  // };
   return (
     <main className="max-w-md m-auto my-12 space-y-7">
       <h1 className="text-3xl font-bold text-center mb-8">
@@ -266,12 +266,12 @@ export const InputUser = () => {
               >
                 Save
               </button>
-              <button
+              {/* <button
                 onClick={handleNewTrip}
                 className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
               >
                 Generate New Trip
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
